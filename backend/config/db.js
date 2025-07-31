@@ -1,13 +1,18 @@
-const mongoose = require('mongoose');
+// backend/config/db.js
+
+import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log(' MongoDB connected');
-  } catch (err) {
-    console.error(' MongoDB connection error:', err.message);
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://trixlee2003:trixlee2003@cluster0.xaq1cjk.mongodb.net/', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(' MongoDB connected successfully');
+  } catch (error) {
+    console.error(' MongoDB connection failed:', error.message);
     process.exit(1);
   }
 };
 
-module.exports = connectDB;
+export default connectDB;

@@ -1,0 +1,246 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My API",
+    "version": "1.0.0",
+    "description": "A sample API documented using Swagger"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/api/students/get": {
+      "get": {
+        "summary": "Retrieves all students",
+        "responses": {
+          "200": {
+            "description": "A list of students",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/post": {
+      "post":{
+        "summary": "Creates a new hello message",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Student_Id": {
+                    "type": "string"
+                  },
+                  
+                    "Firstname":{
+                    "type":"string"
+                  },
+                   "Lastname":{
+                    "type":"string"
+                  },
+                    "Email":{
+                        "type":"string"
+                    },
+                    "Course":{
+                        "type":"string"
+                    }
+
+                },
+                "required": ["message"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Message created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+,
+      "/api/students/get/:id":{
+        "get": {
+            "summary": "get by id ",
+            "responses": {
+            "200": {
+                "description": "A successful response",
+                "content": {
+                "application/json": {
+                    "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                        "Id": {
+                            "type": "string"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
+        }
+    },
+    "/api/students/put":{
+        "put": {
+            "summary": "Updates a student by ID",
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                "type": "string"
+                }
+            }
+            ],
+            "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                    "Firstname": {
+                        "type": "string"
+                    },
+                    "Lastname": {
+                        "type": "string"
+                    },
+                    "Email": {
+                        "type": "string"
+                    },
+                    "Course": {
+                        "type": "string"
+                    }
+                    }
+                }
+                }
+            }
+            },
+            "responses": {
+            "200": {
+                "description": "Student updated successfully"
+            },
+            "404": {
+                "description": "Student not found"
+            }
+            }
+        }}
+        ,
+        "/api/students/delete/:id":
+        {
+        "delete": {
+            "summary": "Deletes a student by ID",
+            "parameters": [
+            {
+                "Student_Id": "",
+                "in": "path",
+                "required": true,
+                "Student_Id": {
+                "type": "string"
+                }
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "Student deleted successfully"
+            },
+            "404": {
+                "description": "Student not found"
+            }
+            }
+        }
+    },
+    "/api/auth/login":{
+        "post": {
+            "summary": "User login",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["email", "password"]
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Login successful"
+                },
+                "401": {
+                    "description": "Invalid credentials"
+                }
+            }
+        }
+    },
+    "/api/auth/register": {
+        "post": {
+            "summary": "User registration",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                " fullname": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["fullname", "email", "password", "phone"]
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "User registered successfully"
+                },
+                "400": {
+                    "description": "Invalid input"
+                }
+            }
+        }
+    }
+        
+}}
